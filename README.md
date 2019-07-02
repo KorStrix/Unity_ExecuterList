@@ -3,6 +3,8 @@
 
 ![](https://github.com/KorStrix/Unity_ExecuterList/blob/master/ImageForGithub/ExecuterList.gif?raw=true)
 
+## 이벤트 트리거 예제
+![](https://github.com/KorStrix/Unity_ExecuterList/blob/master/ImageForGithub/EventTriggerSystem.gif?raw=true)
 
 <br>
 
