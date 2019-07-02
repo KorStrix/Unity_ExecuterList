@@ -24,10 +24,6 @@ public class ExecuterList_Example_HowMove :
     MonoBehaviour
 #endif
 {
-    /* const & readonly declaration             */
-
-    /* enum & struct declaration                */
-
     public abstract class Executer_HowMove : CExecuterBase
     {
         abstract public void Move(MonoBehaviour pCaller);
@@ -128,16 +124,11 @@ public class ExecuterList_Example_HowMove :
         }
     }
 
-    /* public - Field declaration            */
-
-
-    /* protected & private - Field declaration         */
-
-    [Rename_Inspector("평소에 움직이는법")]
+    [DisplayName("평소에 움직이는법")]
     [SerializeField]
     CExecuterList<Executer_HowMove> _pMoveExecuterList = new CExecuterList<Executer_HowMove>();
 
-    [Rename_Inspector("급할때 움직이는법")]
+    [DisplayName("급할때 움직이는법")]
     [SerializeField]
     CExecuterList<Executer_HowMove> _pMoveExecuterList_OnHurry = new CExecuterList<Executer_HowMove>();
 

@@ -19,7 +19,7 @@ using Sirenix.Utilities.Editor;
 
 #if ODIN_INSPECTOR
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
-public class Rename_InspectorAttribute : Attribute
+public class DisplayNameAttribute : Attribute
 {
     public string strInspectorName;
     public bool bIsEditPossibleInspector;
@@ -29,7 +29,7 @@ public class Rename_InspectorAttribute : Attribute
     /// </summary>
     /// <param name="strInpectorName">인스펙터에 노출되는 변수 이름</param>
     /// <param name="bIsEditPossibleInspector">에디터에서 수정가능 유무</param>
-    public Rename_InspectorAttribute(string text, bool bIsEditPossibleInspector = true)
+    public DisplayNameAttribute(string text, bool bIsEditPossibleInspector = true)
     {
         strInspectorName = text;
         this.bIsEditPossibleInspector = bIsEditPossibleInspector;
@@ -38,7 +38,7 @@ public class Rename_InspectorAttribute : Attribute
 #else
 
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = true, AllowMultiple = false)]
-public class Rename_InspectorAttribute : PropertyAttribute
+public class DisplayNameAttribute : PropertyAttribute
 {
     public string strInspectorName;
     public bool bIsEditPossibleInspector;
@@ -48,7 +48,7 @@ public class Rename_InspectorAttribute : PropertyAttribute
     /// </summary>
     /// <param name="strInpectorName">인스펙터에 노출시킬 이름</param>
     /// <param name="bIsEditPossibleInspector">에디터에서 수정가능 유무</param>
-    public Rename_InspectorAttribute(string strInpectorName, bool bIsEditPossibleInspector = true)
+    public DisplayNameAttribute(string strInpectorName, bool bIsEditPossibleInspector = true)
     {
         this.strInspectorName = strInpectorName;
         this.bIsEditPossibleInspector = bIsEditPossibleInspector;
@@ -60,12 +60,12 @@ public class Rename_InspectorAttribute : PropertyAttribute
 #if ODIN_INSPECTOR
 [OdinDrawer]
 [DrawerPriority(DrawerPriorityLevel.SuperPriority)]
-public class CEditorInspector_Attribute_Rename : OdinAttributeDrawer<Rename_InspectorAttribute>
+public class CEditorInspector_Attribute_DisplayName : OdinAttributeDrawer<DisplayNameAttribute>
 {
     /// <summary>
     /// Draws the attribute.
     /// </summary>
-    protected override void DrawPropertyLayout(InspectorProperty property, Rename_InspectorAttribute attribute, GUIContent label)
+    protected override void DrawPropertyLayout(InspectorProperty property, DisplayNameAttribute attribute, GUIContent label)
     {
         if(label != null)
         {
@@ -85,15 +85,15 @@ public class CEditorInspector_Attribute_Rename : OdinAttributeDrawer<Rename_Insp
 }
 
 #else
-[CustomPropertyDrawer(typeof(Rename_InspectorAttribute))]
-public class CEditorInspector_Attribute_Rename : PropertyDrawer
+[CustomPropertyDrawer(typeof(DisplayNameAttribute))]
+public class CEditorInspector_Attribute_DisplayName : PropertyDrawer
 {
-    Rename_InspectorAttribute pAttributeTarget;
+    DisplayNameAttribute pAttributeTarget;
 
     public override void OnGUI(Rect position,
                    SerializedProperty property, GUIContent label)
     {
-        pAttributeTarget = (Rename_InspectorAttribute)attribute;
+        pAttributeTarget = (DisplayNameAttribute)attribute;
         // Vector2 vecSize = CalculateSize(pAttributeTarget);
 
         // Todo - 인스펙터 이름이 길어지면 재조정
@@ -107,13 +107,13 @@ public class CEditorInspector_Attribute_Rename : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        pAttributeTarget = (Rename_InspectorAttribute)attribute;
+        pAttributeTarget = (DisplayNameAttribute)attribute;
         Vector2 vecSize = CalculateSize(pAttributeTarget);
 
         return vecSize.y;
     }
 
-    Vector2 CalculateSize(Rename_InspectorAttribute attribute)
+    Vector2 CalculateSize(DisplayNameAttribute attribute)
     {
         return GUI.skin.label.CalcSize(new GUIContent(attribute.strInspectorName));
     }
